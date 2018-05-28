@@ -1,14 +1,21 @@
+console.log("My Minimal React Webpack Babel Setup");
 
-console.log('My Minimal React Webpack Babel Setup');
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import rootReducer from "./reducers";
+import App from "./app";
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-const title = 'cMy Minimal React Webpack Babel Setup';
+const store = createStore(rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
-  <div>{title}</div>,
-  document.getElementById('app')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("app")
 );
 
 module.hot.accept();
